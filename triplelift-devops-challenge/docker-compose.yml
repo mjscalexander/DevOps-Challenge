@@ -1,0 +1,36 @@
+version: '3'
+services:
+  hello:
+    build: ./app
+    networks:
+      my_network:
+        ipv4_address: 10.10.0.3
+
+  healthcheck_sidecar:
+    build: ./sidecar
+    depends_on:
+      - hello
+    networks:
+      my_network:
+        ipv4_address: 10.10.0.4
+  nginx:
+    image: nginx:1.16-alpine
+    depends_on:
+      - hello
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+    networks:
+      my_network:
+        ipv4_address: 10.10.0.2
+
+networks:
+  my_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/16
+
+
+
