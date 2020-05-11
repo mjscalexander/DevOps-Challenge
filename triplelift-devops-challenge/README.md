@@ -1,4 +1,4 @@
-# Triplelift DevOps Assignment
+# DevOps Challenge
 
 Complete both Module A and Module B to the best of your abilities. Solutions will be evaluated on the basis of correctness, time complexity and use of tests. Document your solutions with code comments and additions to this readme.
 
